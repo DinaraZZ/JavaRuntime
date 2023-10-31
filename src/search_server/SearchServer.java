@@ -25,7 +25,7 @@ public class SearchServer {
                 for (int j = 0; j < docWords.length; j++) {
                     if (words[i].equals(docWords[j])) {
                         count++;
-                        break;
+//                        break;
                     }
                 }
             }
@@ -38,14 +38,14 @@ public class SearchServer {
             int size2 = documentList.size();
             for (int i = 0; i < size2; i++) {
                 for (int j = size2 - 1; j > i; j--) {
-                    if (ids.get(j) < ids.get(j - 1)) {
+                    if (ids.get(j) > ids.get(j - 1)) {
                         Integer id = ids.get(j);
                         ids.set(j, ids.get(j - 1));
-                        ids.set(j-1, id);
+                        ids.set(j - 1, id);
 
                         Document doc = documentList.get(j);
-                        documentList.set(j, documentList.get(j-1));
-                        documentList.set(j-1, doc);
+                        documentList.set(j, documentList.get(j - 1));
+                        documentList.set(j - 1, doc);
                     }
                 }
             }
