@@ -37,7 +37,9 @@ public class Main {
         String secondWord2 = text.substring(pos4 + 1);
         System.out.println(firstWord2 + ", " + secondWord2);*/
 
-        String text = "word apple pear test word pear pear";
+
+
+        /*String text = "word apple pear test word pear pear";
         String word = "pear";
 
         int count = 0;
@@ -48,6 +50,83 @@ public class Main {
             if (pos >= 0) count++;
             else break;
         }
-        System.out.println(count);
+        System.out.println(count);*/
+
+        /*String text = "template application template template task template";
+        String word = "template";
+        String newWord = "";
+        for (int i = 0; i < word.length(); i++) {
+            newWord += "-";
+        }
+        *//*System.out.println(newWord);
+        text = text.replace(word, newWord);
+        System.out.println(text);*//*
+        System.out.println(text);
+//        System.out.println(text.length() - word.length());
+
+        String newText = "";
+        int pos = 0;
+        int prevPos = 0;
+        for (int i = 0; i < text.length(); i++) {
+            if (i == 0) pos = text.indexOf(word, 0);
+            else {
+                prevPos = pos;
+                pos = text.indexOf(word, pos + 1);
+            }
+//            System.out.print(pos + " ");
+            if (pos >= 0) {
+                if (pos == 0) newText += newWord;
+                else if (pos > 0) {
+                    if (i == 0) {
+                        newText += text.substring(0, pos);
+                    }
+
+                    int wordStart = text.indexOf(" ", prevPos);
+                    int wordFinish = text.indexOf(" ", wordStart + 1);
+                    String sub = text.substring(wordStart, wordFinish + 1);
+                    if (!word.equals(sub.trim())) {
+                        newText += sub;
+                        newText += newWord + " ";
+                    } else newText += newWord;
+                } else if (pos == text.length() - word.length()) {
+                    newText += newWord;
+                }
+
+            } else {
+                String sub = text.substring(prevPos);
+                if (!word.equals(sub.trim())) {
+                    System.out.println("1");
+                    int wordStart = text.indexOf(" ", prevPos);
+                    newText += text.substring(wordStart);
+                }
+                break;
+            }
+        }
+        text = newText;
+        System.out.println(text);*/
+
+
+        /*String text = "liquid   template    application    text";
+        System.out.println(text);
+//        text = text.replaceAll("\\s+", " ");
+//        System.out.println(text);
+        text = text.trim();
+        int firstSpace = 0;
+        boolean found = false;
+        for (int space = text.indexOf(" "); space < text.length(); space = text.indexOf(" ", space + 1)) {
+            if (text.charAt(space + 1) == ' ') {
+                if (found == false) {
+                    firstSpace = space;
+                    found = true;
+                }
+            } else {
+                if (space >= 0) {
+                    text = text.substring(0, firstSpace) + text.substring(space);
+                    found = false;
+                } else break;
+            }
+        }
+        System.out.println(text);*/
+
     }
 }
