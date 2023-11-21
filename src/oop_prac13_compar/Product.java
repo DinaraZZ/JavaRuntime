@@ -22,4 +22,15 @@ public class Product {
     public int getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(category);
+        sb.append(":\t");
+        sb.append(name);
+        sb.append(" -\t");
+        sb.append(price);
+        return sb.toString();
+    }
 }

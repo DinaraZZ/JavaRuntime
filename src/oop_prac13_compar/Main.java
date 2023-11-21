@@ -24,6 +24,6 @@ public class Main {
 //        Comparator<Product> c2 = new ProductCategoryComparator();
 //        Arrays.sort(products, new ProductPriceComparator().reversed());
         Arrays.sort(products, new ProductCatPriceComparator());
-        for (Product p : products) System.out.println(p.getCategory() + "\t" + p.getName() + "\t\t" + p.getPrice());
+        for (Product p : products) System.out.println(p);
     }
 }
