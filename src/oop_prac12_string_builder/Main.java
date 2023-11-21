@@ -1,7 +1,6 @@
 package oop_prac12_string_builder;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Main {
