@@ -35,7 +35,7 @@ public class Schedule {
                 break;
             }
 
-            if (end.compareTo(startCurrent) < 0) break;
+            if (end.compareTo(startCurrent) <= 0) break;
         }
 
         if (accessible) {

@@ -10,7 +10,7 @@ public class ScheduleMain {
         Event e2 = new Event("E2", LocalTime.of(13, 00), 60);
         Event e3 = new Event("E3", LocalTime.of(14, 30), 60);
         Event e4 = new Event("E4", LocalTime.of(10, 30), 50);
-        Event[] events = new Event[]{e1, e2, e3, e4};
+        Event[] events = new Event[]{e4, e2, e3, e1};
 
         Schedule sc = new Schedule(events);
 
