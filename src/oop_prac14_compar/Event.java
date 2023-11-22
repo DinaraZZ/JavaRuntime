@@ -24,4 +24,16 @@ public class Event {
     public int getDuration() {
         return duration;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getName());
+        sb.append(": ");
+        sb.append(getStartTime());
+        sb.append("-");
+        sb.append(getStartTime().plusMinutes(getDuration()));
+
+        return sb.toString();
+    }
 }
