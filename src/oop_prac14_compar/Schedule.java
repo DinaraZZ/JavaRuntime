@@ -93,6 +93,13 @@ public class Schedule {
         }
     }
 
+    public Event nearestEvent(LocalTime time) {
+        for (Event e : events) {
+            if (e.getStartTime().compareTo(time) >= 0) return e;
+        }
+        return null;
+    }
+
     public void printEvents() {
         for (Event e : events) {
             System.out.println(e);

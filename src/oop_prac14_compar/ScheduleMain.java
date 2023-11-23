@@ -16,18 +16,8 @@ public class ScheduleMain {
 
         Schedule sc = new Schedule(events);
 
-//        sc.printEvents();
-//        sc.addEvent(e1);
-//        sc.addEvent(e3);
-//        sc.addEvent(e2);
-//        sc.addEvent(e4);
-
-        /*for (Event e: events) System.out.println(e);
-        Arrays.sort(events, new EventComparator());
-        System.out.println();
-        for (Event e: events) System.out.println(e);*/
-
-
         sc.printEvents();
+        System.out.println();
+        System.out.println(sc.nearestEvent(LocalTime.of(23, 10)));
     }
 }
