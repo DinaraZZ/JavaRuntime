@@ -1,5 +1,6 @@
 package oop_prac14_compar;
 
+import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -98,6 +99,44 @@ public class Schedule {
             if (e.getStartTime().compareTo(time) >= 0) return e;
         }
         return null;
+    }
+
+    public Event findClosestEvent(LocalTime time) {
+        if (events.size() == 0) return null;
+
+        Event closestEvent = events.get(0);
+        long minMinutes = Math.abs(Duration.between(closestEvent.getStartTime(), time).toMinutes());
+
+        for (Event e : events) {
+            long duration = Math.abs(Duration.between(e.getStartTime(), time).toMinutes());
+            if (duration < minMinutes) {
+                closestEvent = e;
+                minMinutes = duration;
+            }
+        }
+
+        return closestEvent;
+    }
+
+    public Event[] threeLongestEvents() {
+        int size = events.size();
+        if (size == 0) return null;
+
+        Event[] longestEvents;
+        List<Event> tempEvents = new ArrayList<>(events);
+        tempEvents.sort(new EventDurationComparator());
+
+        if (size >= 3) {
+            longestEvents = new Event[3];
+            for (int i = 0; i < 3; i++) longestEvents[i] = tempEvents.get(i);
+        } else if (size == 1) {
+            longestEvents = new Event[1];
+            longestEvents[0] = events.get(0);
+        } else {
+            longestEvents = new Event[size];
+            for (int i = 0; i < size; i++) longestEvents[i] = tempEvents.get(i);
+        }
+        return longestEvents;
     }
 
     public void printEvents() {
