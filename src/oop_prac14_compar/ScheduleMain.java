@@ -23,7 +23,7 @@ public class ScheduleMain {
         System.out.println();*/
 
         System.out.println();
-        Event[] longest = sc.threeLongestEvents();
+        /*Event[] longest = sc.threeLongestEvents();
         if (longest != null) {
             for (Event e : longest) {
                 StringBuilder builder = new StringBuilder();
@@ -33,6 +33,14 @@ public class ScheduleMain {
                 builder.append(" minutes");
                 System.out.println(builder.toString());
             }
-        } else System.out.println(longest);
+        } else System.out.println(longest);*/
+
+        try {
+            sc.checkFreeTimeFor(new Event("C1", LocalTime.of(12, 0), 10),
+                    new Event("C2", LocalTime.of(9, 3), 5),
+                    new Event("C3", LocalTime.of(16, 0), 50));
+        } catch (NoFreeTimeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
