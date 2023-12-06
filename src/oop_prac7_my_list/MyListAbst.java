@@ -24,4 +24,6 @@ public abstract class MyListAbst implements MyList {
         System.out.println();
         return Arrays.hashCode(arr);
     }
+
+    public abstract void add(Object value);
 }

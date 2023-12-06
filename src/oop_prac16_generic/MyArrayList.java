@@ -24,14 +24,14 @@ public class MyArrayList<T> extends MyListAbst<T> {
         values = (T[]) newValues;
     }
 
-    public void add(T str) {
+    public void add(T value) {
         if (size == values.length) {
             newArray();
         }
-        values[size++] = str;
+        values[size++] = value;
     }
 
-    public void add(int index, T str) {
+    public void add(int index, T value) {
         if (index >= 0 && index <= size) {
             if (size == values.length) {
                 newArray();
@@ -39,7 +39,7 @@ public class MyArrayList<T> extends MyListAbst<T> {
             for (int i = size; i >= index + 1; i--) {
                 values[i] = values[i - 1];
             }
-            values[index] = str;
+            values[index] = value;
             size++;
         } else {
             System.out.println("Error");
@@ -73,10 +73,10 @@ public class MyArrayList<T> extends MyListAbst<T> {
         }
     }
 
-    public boolean contains(T str) {
-        if (str != null) {
+    public boolean contains(T value) {
+        if (value != null) {
             for (int i = 0; i < size; i++) {
-                if (values[i].equals(str)) return true;
+                if (values[i].equals(value)) return true;
             }
             return false;
         }
