@@ -35,12 +35,15 @@ public class ScheduleMain {
             }
         } else System.out.println(longest);*/
 
-        try {
+        /*try {
             sc.checkFreeTimeFor(new Event("C1", LocalTime.of(12, 0), 10),
                     new Event("C2", LocalTime.of(9, 3), 5),
                     new Event("C3", LocalTime.of(16, 0), 50));
         } catch (NoFreeTimeException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
+
+        Object o = e1;
+        System.out.println(o.getClass());
     }
 }

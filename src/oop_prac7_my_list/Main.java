@@ -1,5 +1,7 @@
 package oop_prac7_my_list;
 
+import java.util.Comparator;
+
 public class Main {
     public static void main(String[] args) {
         MyList myList = new MyLinkedList();
@@ -20,5 +22,6 @@ public class Main {
         System.out.println(myList.equals(myList2));
         System.out.println(myList.hashCode());
         System.out.println(myList2.hashCode());
+
     }
 }
