@@ -1,29 +1,29 @@
 package oop_prac16_generic;
 
 public class Node<T> {
-    private Node prev;
-    private Node next;
+    private Node<T> prev;
+    private Node<T> next;
     private T value;
 
-    public Node(Node prev, Node next, T value) {
+    public Node(Node<T> prev, Node<T> next, T value) {
         this.prev = prev;
         this.next = next;
         this.value = value;
     }
 
-    public Node getPrev() {
+    public Node<T> getPrev() {
         return prev;
     }
 
-    public void setPrev(Node prev) {
+    public void setPrev(Node<T> prev) {
         this.prev = prev;
     }
 
-    public Node getNext() {
+    public Node<T> getNext() {
         return next;
     }
 
-    public void setNext(Node next) {
+    public void setNext(Node<T> next) {
         this.next = next;
     }
 

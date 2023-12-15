@@ -1,13 +1,15 @@
 package oop_prac16_generic;
 
 
+import java.util.Comparator;
+
 public class MyLinkedList<T> extends MyListAbst<T> {
 
     private Node<T> first;
     private Node<T> last;
     private int size;
 
-    private Node getNodeByIndex(int index) {
+    private Node<T> getNodeByIndex(int index) {
 //        if (index < 0 || index >= size) return null;
         Node<T> n = first;
         for (int i = 0; i < index; i++) {
@@ -19,11 +21,11 @@ public class MyLinkedList<T> extends MyListAbst<T> {
     @Override
     public void add(T value) {
         if (size == 0) {
-            Node<T> n = new Node(null, null, value);
+            Node<T> n = new Node<>(null, null, value);
             first = n;
             last = n;
         } else {
-            Node<T> n = new Node(last, null, value);
+            Node<T> n = new Node<>(last, null, value);
             last.setNext(n);
             last = n;
         }
@@ -33,7 +35,7 @@ public class MyLinkedList<T> extends MyListAbst<T> {
     @Override
     public void add(int index, T value) {
         if (index < 0 || index > size) return;
-        Node<T> n = new Node(null, null, value);
+        Node<T> n = new Node<>(null, null, value);
         if (index == 0) {
             n.setNext(first);
             first.setPrev(n);
@@ -66,14 +68,14 @@ public class MyLinkedList<T> extends MyListAbst<T> {
     }//////////
 
     @Override
-    public void set(int index, String str) {
+    public void set(int index, T value) {
         if (index < 0 || index >= size) return;
         else {
-            Node n = getNodeByIndex(index);
+            Node<T> n = getNodeByIndex(index);
             /*for (int i = 0; i < index; i++) {
                 n = n.getNext();
             }*/
-            n.setValue(str);
+            n.setValue(value);
         }
     }
 
@@ -87,12 +89,12 @@ public class MyLinkedList<T> extends MyListAbst<T> {
             last = last.getPrev();
             last.setNext(null);
         } else {
-            Node n = getNodeByIndex(index);
+            Node<T> n = getNodeByIndex(index);
             /*for (int i = 0; i < index; i++) {
                 n = n.getNext();
             }*/
-            Node prev = n.getPrev();
-            Node next = n.getNext();
+            Node<T> prev = n.getPrev();
+            Node<T> next = n.getNext();
             prev.setNext(next);
             next.setPrev(prev);
         }
@@ -100,42 +102,42 @@ public class MyLinkedList<T> extends MyListAbst<T> {
     }
 
     @Override
-    public boolean contains(String str) {
-        Node n = first;
+    public boolean contains(T value) {
+        Node<T> n = first;
         for (int i = 0; i < size; i++) {
-            if (n.getValue().equals(str)) return true;
+            if (n.getValue().equals(value)) return true;
             n = n.getNext();
         }
         return false;
     }
 
     @Override
-    public int indexOf(String str) {
-        Node n = first;
+    public int indexOf(T value) {
+        Node<T> n = first;
         for (int i = 0; i < size; i++) {
-            if (n.getValue().equals(str)) return i;
+            if (n.getValue().equals(value)) return i;
             n = n.getNext();
         }
         return -1;
     }
 
     @Override
-    public int lastIndexOf(String str) {
-        Node n = last;
+    public int lastIndexOf(T value) {
+        Node<T> n = last;
         for (int i = size - 1; i >= 0; i--) {
-            if (n.getValue().equals(str)) return i;
+            if (n.getValue().equals(value)) return i;
             n = n.getPrev();
         }
         return -1;
     }
 
     @Override
-    public void sort() {
-        Node n = last;
+    public void sort(Comparator<T> comparator) {
+        Node<T> n = last;
         for (int i = 0; i < size - 1; i++) {
             for (int j = size - 1; j > i; j--) {
-                if (n.getValue().compareTo(n.getPrev().getValue()) < 0) {
-                    String temp = n.getValue();
+                if (comparator.compare(n.getValue(), n.getPrev().getValue()) < 0) {
+                    T temp = n.getValue();
                     n.setValue(n.getPrev().getValue());
                     n.getPrev().setValue(temp);
                 }
@@ -151,20 +153,20 @@ public class MyLinkedList<T> extends MyListAbst<T> {
     }
 
     @Override
-    public String[] toArray() {
-        String[] arr = new String[size];
-        Node n = first;
+    public T[] toArray() {
+        Object[] arr = new Object[size];
+        Node<T> n = first;
         for (int i = 0; i < size; i++) {
             arr[i] = n.getValue();
             n = n.getNext();
         }
-        return arr;
+        return (T[]) arr;
     }
 
     @Override
     public String toString() {
         String str = "[";
-        Node n = first;
+        Node<T> n = first;
         do {
             if (n == last) str += n.getValue() + "]";
             else str += n.getValue() + ", ";
