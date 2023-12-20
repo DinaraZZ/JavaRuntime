@@ -3,6 +3,7 @@ package oop_prac16_generic;
 import oop_prac14_compar.Event;
 import oop_prac14_compar.EventComparator;
 import oop_prac14_compar.EventDurationComparator;
+import static java.lang.Math.pow;
 
 import java.lang.reflect.Array;
 import java.time.LocalTime;
