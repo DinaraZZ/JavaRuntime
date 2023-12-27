@@ -13,6 +13,8 @@ public class Main {
         code = streamReader.read();
         System.out.println(code);*/
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+
         /*InputStreamReader systemReader = new InputStreamReader(System.in);
         try (FileReader fileReader = new FileReader("./text.txt")) {
             String str = readLine(fileReader);
@@ -30,6 +32,8 @@ public class Main {
         } catch (Exception e) {
             System.out.println(e);
         }*/
+
+/////////////////////////////////////////////////////////////////////////////////////////////
 
 //        List<String> names2 = new ArrayList<>();
 //        names2.add("sdga");
@@ -54,9 +58,12 @@ public class Main {
 
         System.out.println(names);*/
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+
         // false = перезаписывает, true = продолжает запись (фолс по ум)
 //        FileWriter fileWriter = new FileWriter("./text.txt");
-        try (FileReader fileReader = new FileReader("./file_1.txt");
+
+        /*try (FileReader fileReader = new FileReader("./file_1.txt");
              FileWriter fileWriter = new FileWriter("./file_2.txt")) {
             int line = 1;
             String str = readLine(fileReader);
@@ -70,10 +77,12 @@ public class Main {
             }
         } catch (IOException e) {
             System.out.println(e);
-        }
+        }*/
+
+/////////////////////////////////////////////////////////////////////////////////////////////
     }
 
-    private static String readLine() throws IOException {
+    public static String readLine() throws IOException {
         InputStream inputStream = System.in;
         InputStreamReader streamReader = new InputStreamReader(inputStream);
         StringBuilder sb = new StringBuilder();
@@ -86,7 +95,7 @@ public class Main {
         return sb.toString();
     }
 
-    private static String readLine(Reader reader) throws IOException {
+    public static String readLine(Reader reader) throws IOException {
         StringBuilder sb = new StringBuilder();
         int code = reader.read();
         while (code != '\n') {
