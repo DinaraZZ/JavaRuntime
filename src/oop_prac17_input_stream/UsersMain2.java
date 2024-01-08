@@ -139,26 +139,6 @@ public class UsersMain2 {
                 break;
             }
         }
-        /*try (FileWriter fileWriter = new FileWriter("./users_temp.txt", false)) {
-            fileWriter.write("");
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }*/
-
-        /*try (FileReader fileReader = new FileReader("./users.txt");
-             FileWriter fileWriter = new FileWriter("./users_temp.txt", true)) {
-            String user = readLine(fileReader);
-            while (user != null) {
-                String[] userInfo = user.split(", ");
-                if (!userInfo[0].equals(login)) {
-                    fileWriter.write(user + "\n");
-                }
-                user = readLine(fileReader);
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }*/
-
         rewriteByList();
     }
 
