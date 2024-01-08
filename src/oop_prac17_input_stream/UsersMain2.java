@@ -4,10 +4,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static oop_prac17_input_stream.Main.readLine;
 
@@ -50,11 +47,12 @@ public class UsersMain2 {
                 System.out.println("Просмотреть данные [1]");
                 System.out.println("Изменить данные [2]");
                 System.out.println("Удалить данные [3]");
+                System.out.println("Сортировать данные [4]");
                 System.out.print("Выберите действие: ");
                 line = readLine(streamReader);
                 action = Integer.parseInt(line);
                 System.out.println();
-            } while (action < 1 || action > 3);
+            } while (action < 1 || action > 4);
 
             switch (action) {
                 case 1:
@@ -67,6 +65,10 @@ public class UsersMain2 {
                 case 3:
                     deleteUser(login);
                     System.out.println("Пользователь удалён");
+                    break;
+                case 4:
+                    sortByIncome();
+                    System.out.println("Данные отсортированы");
                     break;
                 default:
                     break;
@@ -132,9 +134,11 @@ public class UsersMain2 {
     public static void deleteUser(String login) {
         getUsersListFromFile();
         for (User user : userList) {
-            if (user.login.equals(login)) userList.remove(user);
+            if (user.login.equals(login)) {
+                userList.remove(user);
+                break;
+            }
         }
-
         /*try (FileWriter fileWriter = new FileWriter("./users_temp.txt", false)) {
             fileWriter.write("");
         } catch (IOException e) {
@@ -155,6 +159,16 @@ public class UsersMain2 {
             System.out.println(e.getMessage());
         }*/
 
+        rewriteByList();
+    }
+
+    public static void sortByIncome() {
+        getUsersListFromFile();
+        Collections.sort(userList, new UserIncomeComparator());
+        rewriteByList();
+    }
+
+    public static void rewriteByList() {
         try (FileWriter fileWriter = new FileWriter("./users.txt", false)) {
             for (User user : userList) {
                 StringBuilder sb = new StringBuilder();
@@ -173,6 +187,8 @@ public class UsersMain2 {
     }
 
     public static void getUsersListFromFile() {
+        userList.clear();
+
         try (FileReader fileReader = new FileReader("./users.txt")) {
             String user = readLine(fileReader);
             while (user != null) {
