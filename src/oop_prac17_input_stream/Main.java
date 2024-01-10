@@ -108,4 +108,18 @@ public class Main {
         }
         return sb.toString();
     }
+
+    public static String readLine(InputStream reader) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        int code = reader.read();
+        while (code != '\n') {
+            if (code == -1) {
+                if (sb.length() == 0) return null;
+                else break;
+            }
+            sb.append((char) code);
+            code = reader.read();
+        }
+        return sb.toString();
+    }
 }

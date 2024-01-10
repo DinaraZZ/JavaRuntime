@@ -5,9 +5,14 @@ import java.util.*;
 
 import static oop_prac17_input_stream.Main.readLine;
 
-public class UsersMain2 {
-    public static void main(String[] args) {
+public class UsersMain2Buffered {
+    public static void main(String[] args) throws Exception {
         findUserIO();
+       /* InputStream inputStream = System.in;
+//        System.out.println(inputStream.read());
+
+        InputStreamReader streamReader = new InputStreamReader(inputStream);
+        System.out.println(streamReader.read());*/
         /*1)BufferedWriter(FileWriter);
         2) BufferedReader;
         3) BufferedInputStream;
@@ -18,16 +23,16 @@ public class UsersMain2 {
     private static List<User> userList = new ArrayList<>();
 
     public static void findUserIO() {
-        try (InputStreamReader streamReader = new InputStreamReader(System.in)) {
+        try (BufferedInputStream bufferedReader = new BufferedInputStream(System.in)) {
             System.out.print("Введите логин: ");
-            String login = readLine(streamReader);
+            String login = readLine(bufferedReader);
             System.out.print("Введите пароль: ");
-            String password = readLine(streamReader);
+            String password = readLine(bufferedReader);
             System.out.println();
             getUsersFromFile();
             if (userExists(login, password)) optionsIO(login, password);
         } catch (IOException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -41,7 +46,7 @@ public class UsersMain2 {
     }
 
     public static void optionsIO(String login, String password) {
-        try (InputStreamReader streamReader = new InputStreamReader(System.in)) {
+        try (BufferedInputStream bufferedReader = new BufferedInputStream(System.in)) {
             String line;
             int action;
             do {
@@ -50,7 +55,7 @@ public class UsersMain2 {
                 System.out.println("Удалить данные [3]");
                 System.out.println("Сортировать данные [4]");
                 System.out.print("Выберите действие: ");
-                line = readLine(streamReader);
+                line = readLine(bufferedReader);
                 action = Integer.parseInt(line);
                 System.out.println();
             } while (action < 1 || action > 4);
@@ -81,8 +86,9 @@ public class UsersMain2 {
 
     public static void showUser(String login, String password) {
         StringBuilder sb = new StringBuilder();
-        try (FileReader fileReader = new FileReader("./users.txt")) {
-            String user = readLine(fileReader);
+        try (FileReader fileReader = new FileReader("./users.txt");
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+            String user = readLine(bufferedReader);
             while (user != null) {
                 String[] userInfo = user.split(", ");
                 if (userInfo[0].equals(login) && userInfo[1].equals(password)) {
@@ -92,7 +98,7 @@ public class UsersMain2 {
                     sb.append(userInfo[3]);
                     break;
                 }
-                user = readLine(fileReader);
+                user = readLine(bufferedReader);
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -101,15 +107,15 @@ public class UsersMain2 {
     }
 
     public static void changeUserIO(String login, String password) {
-        try (InputStreamReader streamReader = new InputStreamReader(System.in)) {
+        try (BufferedInputStream bufferedReader = new BufferedInputStream(System.in)) {
             System.out.print("Введите новое Имя: ");
-            String name = readLine(streamReader);
+            String name = readLine(bufferedReader);
             System.out.print("Введите новый доход: ");
-            String income = readLine(streamReader);
+            String income = readLine(bufferedReader);
             System.out.println();
             changeUser(login, password, name, income);
         } catch (IOException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -125,8 +131,9 @@ public class UsersMain2 {
         sb.append(", ");
         sb.append(income);
 
-        try (FileWriter fileWriter = new FileWriter("./users.txt", true)) {
-            fileWriter.write(sb.toString() + "\n");
+        try (FileWriter fileWriter = new FileWriter("./users.txt", true);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+            bufferedWriter.write(sb.toString() + "\n");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -150,7 +157,8 @@ public class UsersMain2 {
     }
 
     public static void rewriteByList() {
-        try (FileWriter fileWriter = new FileWriter("./users.txt", false)) {
+        try (FileWriter fileWriter = new FileWriter("./users.txt", false);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             for (User user : userList) {
                 StringBuilder sb = new StringBuilder();
                 sb.append(user.login);
@@ -160,7 +168,7 @@ public class UsersMain2 {
                 sb.append(user.name);
                 sb.append(", ");
                 sb.append(user.income);
-                fileWriter.write(sb.toString() + "\n");
+                bufferedWriter.write(sb.toString() + "\n");
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -170,8 +178,9 @@ public class UsersMain2 {
     public static void getUsersListFromFile() {
         userList.clear();
 
-        try (FileReader fileReader = new FileReader("./users.txt")) {
-            String user = readLine(fileReader);
+        try (FileReader fileReader = new FileReader("./users.txt");
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+            String user = readLine(bufferedReader);
             while (user != null) {
                 String[] userInfo = user.split(", ");
 
@@ -182,7 +191,7 @@ public class UsersMain2 {
                 userOb.income = userInfo[3];
                 userList.add(userOb);
 
-                user = readLine(fileReader);
+                user = readLine(bufferedReader);
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -190,12 +199,13 @@ public class UsersMain2 {
     }
 
     public static void getUsersFromFile() {
-        try (FileReader fileReader = new FileReader("./users.txt")) {
-            String user = readLine(fileReader);
+        try (FileReader fileReader = new FileReader("./users.txt");
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+            String user = readLine(bufferedReader);
             while (user != null) {
                 String[] userInfo = user.split(", ");
                 users.put(userInfo[0], userInfo[1]);
-                user = readLine(fileReader);
+                user = readLine(bufferedReader);
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
