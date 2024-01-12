@@ -50,7 +50,7 @@ public class Main3Nums {
                 System.out.println("num3: " + num3);
                 bufferedWriter.write(num3.toString() + "\n");
 
-            } while (str1 != null && str2 != null);
+            } while (str1 != null || str2 != null);
 
         } catch (IOException e) {
             System.out.println(e);
