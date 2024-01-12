@@ -117,7 +117,7 @@ public class Main {
                 if (sb.length() == 0) return null;
                 else break;
             }
-            sb.append((char) code);
+            if (code != '\n') sb.append((char) code);
             code = reader.read();
         }
         return sb.toString();
