@@ -5,15 +5,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FileUtil {
-    private String parentDirectory;
+//    private String parentDirectory;
     private File parentFile;
 
     public FileUtil(String parentDirectory) {
-        this.parentDirectory = parentDirectory;
+//        this.parentDirectory = parentDirectory;
         parentFile = new File(parentDirectory);
     }
 
