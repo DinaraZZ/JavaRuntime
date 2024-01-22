@@ -1,16 +1,15 @@
 package oop_prac19_recursive;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TreeUtil {
     private final File file;
     private final String filePath;
 
     public TreeUtil() {
-        filePath = "./src/oop_prac19_recursive/text.txt";
+        filePath = "./src/oop_prac19_recursive/text_2.txt";
         file = new File(filePath);
     }
 
@@ -34,7 +33,7 @@ public class TreeUtil {
     private void fillFileWithTree(TreeNode parentNode, String prefix, BufferedWriter bufferedWriter) throws IOException {
 //        bufferedWriter.write(prefix + parentNode.getName() + "\n");
 
-        TreeNode[] treeNodes = parentNode.getTreeNodes();
+        List<TreeNode> treeNodes = parentNode.getTreeNodes();
 //        if (treeNodes.length > 0) {
         for (TreeNode treeNode : treeNodes) {
             bufferedWriter.write(prefix + treeNode.getName() + "\n");
@@ -42,4 +41,36 @@ public class TreeUtil {
         }
 //        }
     }
+
+    public TreeNode createTreeFromFile() {
+        TreeNode parentNode = new TreeNode("Parent");
+
+        try (FileReader fileReader = new FileReader("./src/oop_prac19_recursive/text.txt");
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+
+            String line = new String();
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] parts = line.split("- ");
+
+                String name = new String();
+                for (String part : parts) {
+                    if (!part.equals("- ")) name += part;
+                }
+
+                List<TreeNode> nodes = parentNode.getTreeNodes();
+                for (int i = 0; i < parts.length - 1; i++) {
+                    nodes = nodes.get(nodes.size() - 1).getTreeNodes();
+                }
+
+                nodes.add(new TreeNode(name));
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return parentNode;
+    }
+
+
 }
