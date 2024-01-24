@@ -72,5 +72,22 @@ public class TreeUtil {
         return parentNode;
     }
 
+    public void subnodesByCategory(TreeNode parent, String category) {
+        List<TreeNode> treeNodes = parent.getTreeNodes();
+        for (TreeNode treeNode : treeNodes) {
+            if (treeNode.getName().equals(category)) {
+                System.out.println(treeNode.getName());
+                printNodes(treeNode, "- ");
+            }
+            else subnodesByCategory(treeNode, category);
+        }
+    }
 
+    private void printNodes(TreeNode parentNode, String prefix) {
+        List<TreeNode> treeNodes = parentNode.getTreeNodes();
+        for (TreeNode treeNode : treeNodes) {
+            System.out.println(prefix + treeNode.getName());
+            printNodes(treeNode, prefix + "- ");
+        }
+    }
 }
