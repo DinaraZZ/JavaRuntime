@@ -17,6 +17,8 @@ public class UrlParser {
             protocol = matcher.group(1);
             host = matcher.group(2);
             uri = matcher.group(3);
+        } else {
+            throw new IncorrectPathException();
         }
     }
 
