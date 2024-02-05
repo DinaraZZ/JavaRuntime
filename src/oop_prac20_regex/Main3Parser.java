@@ -1,5 +1,8 @@
 package oop_prac20_regex;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,7 +17,7 @@ public class Main3Parser {
         System.out.println(urlParser.getUri());*/
 
         // 2
-        String number = "54759501.54";
+        /*String number = "54759501.54";
         int count = 0;
         String leftNumbers = number;
         String fraction = "";
@@ -35,7 +38,38 @@ public class Main3Parser {
                 parsedNumber += "," + "0".repeat(count);
             }
         }
-        System.out.println(parsedNumber.trim());
+        System.out.println(parsedNumber.trim());*/
 
+        // 3
+        /*String[] array = {
+                "-4.5", "liquid", "22", "7.5", "tax", "122$"
+        };
+        double sum = 0;
+        Pattern pattern = Pattern.compile("(-?\\d+(\\.\\d+)?)");
+        Matcher matcher;
+        for (String value : array) {
+            matcher = pattern.matcher(value);
+            if (matcher.find()) sum += Double.parseDouble(matcher.group(1));
+        }
+        System.out.println(sum);*/
+
+        // 4
+        /*try (FileReader fileReader = new FileReader("./src/oop_prac20_regex/data.txt");
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+            String line;
+            String regex = "^[А-Я]{1}[а-я]+\\s[А-Я]{1}[а-я]+,\\s\\d{1,3}\\sлет,\\semail:\\s\\w+@\\w+(\\.\\w+)*\\.com$";
+            while ((line = bufferedReader.readLine()) != null) {
+                if(line.matches(regex)) System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }*/
+
+        // 5
+        String text = "teliquid terminate map template letter";
+        String regex = "(^|\\s)(te[a-z]*)"; // начало строки или пробел
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find()) System.out.println(matcher.group(2));
     }
 }
