@@ -6,7 +6,7 @@ public class oop_prac22_indexof {
 //        System.out.println(myIndexOf(text, "template", 33));
 //        System.out.println(myLastIndexOf(text, "template"));
 
-        String x = "abbbbcccaaazzzbbaaaaaaaa";
+        String x = "abbbbcccaaaaaaazzzbb";
 
         maxConsecutiveChar(x);
     }
@@ -90,12 +90,13 @@ public class oop_prac22_indexof {
                 character = text.charAt(i);
                 count = 1;
             }
+
+            if (count > maxCount) {
+                maxCount = count;
+                maxCharacter = character;
+            }
         }
 
-        if (count > maxCount) {
-            maxCount = count;
-            maxCharacter = character;
-        }
 
         System.out.println(maxCharacter + ": " + maxCount);
     }
