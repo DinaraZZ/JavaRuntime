@@ -97,9 +97,6 @@ public class oop_prac22_indexof {
             }
         }
 
-
         System.out.println(maxCharacter + ": " + maxCount);
     }
-
-
 }
