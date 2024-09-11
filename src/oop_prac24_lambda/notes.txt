@@ -1,0 +1,8 @@
+record - класс с final полями, constructor, getter, equals, hashcode
+record Item(String name, int price) {}
+
+Predicate
+Consumer (forEach available)
+Function из одного типа в другой
+Supplier
+UnaryOperator
